@@ -13,10 +13,14 @@ double c_uptime() {
     return v;
 }
 
+void close_cb(uv_handle_t* handle) {
+    free(handle);
+}
+
 void c_setTimeout_cb(uv_timer_t* timer, int status) {
     uv_timer_stop(timer);
     idris_setTimeout_cb(vm, timer->data);
-    free(timer);
+    uv_close(timer, &close_cb);
 }
 
 void c_setTimeout(int ms, void* cb) {
@@ -25,6 +29,7 @@ void c_setTimeout(int ms, void* cb) {
   uv_timer_init(loop, timer);
   uv_timer_start(timer, (uv_timer_cb) &c_setTimeout_cb, ms, ms);
 }
+
 
 void main() {
     vm = idris_vm();

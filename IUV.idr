@@ -15,4 +15,5 @@ idris_setTimeout_cb : Raw (IO ()) -> IO ()
 idris_setTimeout_cb (MkRaw cb) = cb
 
 h : FFI_Export FFI_C "build/IUV.h" []
-h = Fun idris_setTimeout_cb "idris_setTimeout_cb" $ End
+h = Fun idris_setTimeout_cb "idris_setTimeout_cb" $
+    End
