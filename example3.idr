@@ -24,6 +24,7 @@ main = launch $ do
 -- begin
 -- delayed
 -- end
+-- ------- pause -------
 -- delayed
 -- end
 
