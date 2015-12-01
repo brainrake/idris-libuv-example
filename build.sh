@@ -12,7 +12,7 @@ idris IUV.idr --interface --codegenonly -o "build/IUV.c" --ibcsubdir "build"
 for i in `seq 3 3`;
 do
   ### Compile Idris code to C. Both IUV and Main modules will be in build/example1.c
-  idris example${i}.idr --interface --codegenonly -o build/example${i}.c  --ibcsubdir "build" --dumpdefuns build/example${i}.defuns --dumpcases build/example#{i}.cases
+  idris example${i}.idr --interface --codegenonly -o build/example${i}.c  --ibcsubdir "build" --dumpdefuns build/example${i}.defuns --dumpcases build/example${i}.cases
 
   ### Compile and link all C code, including Idris-compiled-to-C, to produce executable.
   gcc -g build/example${i}.c iuv_c.c -o example${i} -luv -I. `idris --include` `idris --link`
