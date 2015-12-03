@@ -24,12 +24,11 @@ void c_setTimeout_cb(uv_timer_t* timer, int status) {
 }
 
 void c_setTimeout(int ms, void* cb) {
-  uv_timer_t* timer = malloc(sizeof(uv_loop_t));
-  timer->data = cb;
-  uv_timer_init(loop, timer);
-  uv_timer_start(timer, (uv_timer_cb) &c_setTimeout_cb, ms, ms);
+    uv_timer_t* timer = malloc(sizeof(uv_loop_t));
+    timer->data = cb;
+    uv_timer_init(loop, timer);
+    uv_timer_start(timer, (uv_timer_cb) &c_setTimeout_cb, ms, ms);
 }
-
 
 void main() {
     vm = idris_vm();
