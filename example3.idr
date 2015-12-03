@@ -44,6 +44,7 @@ cont_io = lift
 
 main : IO ()
 main = do
+  for_ [1..10000] $ \n => launch $ wait 100
   launch $ do
     putStrLn "A begin"
     wait 1000
@@ -56,5 +57,5 @@ main = do
       putStrLn $ "B wait " ++ show n ++ " end"
     putStrLn $ "B end"
 
-h : FFI_Export FFI_C "../out/example3.h" []
+h : FFI_Export FFI_C "build/example3.h" []
 h = Fun main "idris_main" $ End

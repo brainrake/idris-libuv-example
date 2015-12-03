@@ -10,6 +10,6 @@ main = do
       putStrLn $ "delayed " ++ show n
   putStrLn "end"
 
-h : FFI_Export FFI_C "../out/example2.h" []
+h : FFI_Export FFI_C "build/example2.h" []
 h = Fun main "idris_main" $
     End
