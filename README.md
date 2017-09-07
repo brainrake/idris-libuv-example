@@ -4,10 +4,10 @@ Example code for hooking up a [libuv](http://libuv.org/) event loop based asynch
     > nix-shell
 
     $ # build the project
-    $ build.sh
+    $ sh build.sh
 
     $ # run it
-    $ ./example1
+    $ out/example1
 
 The goal is to provide a simple [nodejs](https://nodejs.org)-like API for asynchronous programming, while reaping all the benefits of a dependently typed language _and_ compiling to native code.
 

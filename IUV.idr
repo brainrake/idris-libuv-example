@@ -1,5 +1,7 @@
 module IUV
 
+%access export
+
 %include C "iuv_c.h"
 
 uptime : IO Double

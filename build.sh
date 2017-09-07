@@ -1,7 +1,9 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 mkdir -p build
+mkdir -p out
 rm build/*
+rm out/*
 set -o verbose
 
 ### Produce Idris libuv binding C header file, IUV.h.
@@ -15,6 +17,5 @@ do
   idris example${i}.idr --interface --codegenonly -o build/example${i}.c  --ibcsubdir "build" --dumpdefuns build/example${i}.defuns --dumpcases build/example${i}.cases --noprelude
 
   ### Compile and link all C code, including Idris-compiled-to-C, to produce executable.
-  gcc -g build/example${i}.c iuv_c.c -o example${i} -luv -I. `idris --include` `idris --link`
+  gcc -g build/example${i}.c iuv_c.c -include build/example${i}.h -o out/example${i} -luv -I. `idris --include` `idris --link`
 done
-

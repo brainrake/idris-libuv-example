@@ -1,7 +1,10 @@
-#include "iuv_c.h"
-#include "build/IUV.h"
+#include <stddef.h>
+#include <stdlib.h>
 #include <uv.h>
 #include <idris_rts.h>
+
+#include "iuv_c.h"
+#include "build/IUV.h"
 
 VM* vm;
 
@@ -20,7 +23,7 @@ void close_cb(uv_handle_t* handle) {
 void c_setTimeout_cb(uv_timer_t* timer, int status) {
     uv_timer_stop(timer);
     idris_setTimeout_cb(vm, timer->data);
-    uv_close(timer, &close_cb);
+    uv_close((uv_handle_t*)timer, &close_cb);
 }
 
 void c_setTimeout(int ms, void* cb) {
